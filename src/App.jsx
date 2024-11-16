@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import WeatherCard from "./WeatherCard";  // Import the WeatherCard component
 
 const App = () => {
   const [city, setCity] = useState("");
@@ -42,7 +43,7 @@ const App = () => {
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }} className="container">
       <h1>Weather App</h1>
 
       {/* Input for city */}
@@ -75,15 +76,9 @@ const App = () => {
       {/* Error message */}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {/* Weather data */}
+      {/* Pass weatherData to WeatherCard component */}
       {weatherData && weatherData.main && (
-        <div style={{ marginTop: "20px" }}>
-          <h2>City: {weatherData.name}</h2>
-          <p>Temperature: {weatherData.main.temp}°C</p>
-          <p>Weather: {weatherData.weather?.[0]?.description || "N/A"}</p>
-          <p>Humidity: {weatherData.main.humidity}%</p>
-          <p>Wind Speed: {weatherData.wind.speed} m/s</p>
-        </div>
+        <WeatherCard weather={weatherData} />
       )}
     </div>
   );
